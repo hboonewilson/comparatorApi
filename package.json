@@ -4,7 +4,9 @@
   "description": "express end-point",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "start" : "node index.js"
+
   },
   "author": "hboonewilson",
   "license": "ISC",
