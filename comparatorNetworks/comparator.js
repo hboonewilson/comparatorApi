@@ -47,4 +47,4 @@ const tupleToArray = function(tuple){
 
 
 //console.log(stringToArray("[1,2,3,4,5]"))
-module.exports = {toNewString, compareTheNetwork, stringToArray}
+module.exports = {toNewString, compareTheNetwork, stringToArray, tupleToArray}

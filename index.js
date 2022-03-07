@@ -5,13 +5,7 @@ const comparatorNetworks = require('./comparatorNetworks')
 const app = express();
 const PORT = process.env.PORT || 3000
 
-function createPromiseSorting(lis) {
-  var newLis = comparatorNetworks.compareTheNetwork(lis);
-  return new Promise((resolve, reject) => {
-    if(newLis){resolve(newLis)}
-    else{ reject("Not large enough")}
-  });
-}
+
 app.get('/', (req, res) => {
   res.send('Hello World!')
 })
