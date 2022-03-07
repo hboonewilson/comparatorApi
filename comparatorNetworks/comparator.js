@@ -1,4 +1,3 @@
-const runComparator = require('./runComparator');
 const { Comparator, Network } = require('./objects/comparatorNetworkObject');
 const  toNewString = function(str){
     var tupArr =  tupleToArray(str);
