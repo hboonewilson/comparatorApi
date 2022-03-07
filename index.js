@@ -1,6 +1,5 @@
 const { response } = require('express')
 const express = require('express')
-const { json } = require('express/lib/response')
 const comparatorNetworks = require('./comparatorNetworks')
 const paralell = require('./comparatorNetworks/parallel')
 const app = express();

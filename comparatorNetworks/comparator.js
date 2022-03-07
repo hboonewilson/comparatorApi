@@ -1,4 +1,5 @@
-const runComparator = require('./runComparator')
+const runComparator = require('./runComparator');
+const { Comparator, Network } = require('./objects/comparatorNetworkObject');
 const  toNewString = function(str){
     var tupArr =  tupleToArray(str);
     var retArr = ''
@@ -9,22 +10,22 @@ const  toNewString = function(str){
 }
 
 const compareTheNetwork = function(lis){
-
-    var comparatorNetwork = [ [ 1, 2 ], [ 3, 4 ], [ 1, 3 ], [ 2, 4 ], [ 2, 3 ] ]
-
+    //the place holder for now.
+    var comparatorNetwork = new Network("[(1,2),(3,4),(1,3),(2,4),(2,3)]")
     if(!Array.isArray(lis)){
         throw "list passed isn't an array";
     }
 
-    if(runComparator.findHighestWire(comparatorNetwork) > lis.length){
+    if(comparatorNetwork.theTopWire > lis.length){
         return false;
     }
     else{
-        for (let i = 0; i < comparatorNetwork.length; i++) {
-            const element = comparatorNetwork[i];
+        compLis = comparatorNetwork.compArr
+        for (let i = 0; i < compLis.length; i++) {
+            const comp = compLis[i];
 
-            let lowWire = element[0] - 1;
-            let highWire = element[1] - 1;
+            let lowWire = comp.lowWire - 1
+            let highWire = comp.highWire - 1;
             
             if (lis[lowWire] > lis[highWire]){
                 let mid = lis[lowWire];
