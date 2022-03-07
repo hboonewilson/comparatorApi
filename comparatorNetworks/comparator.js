@@ -13,7 +13,7 @@ const compareTheNetwork = function(lis){
     var comparatorNetwork = [ [ 1, 2 ], [ 3, 4 ], [ 1, 3 ], [ 2, 4 ], [ 2, 3 ] ]
 
     if(!Array.isArray(lis)){
-        throw "lis isn't an array";
+        throw "list passed isn't an array";
     }
 
     if(runComparator.findHighestWire(comparatorNetwork) > lis.length){
@@ -45,6 +45,6 @@ const tupleToArray = function(tuple){
         .replace(/\)/g, ']'));
     };
 
-console.log(typeof [1,2,3])
+
 //console.log(stringToArray("[1,2,3,4,5]"))
 module.exports = {toNewString, compareTheNetwork, stringToArray}
