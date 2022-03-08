@@ -16,7 +16,6 @@ describe("insertArrIntoParallelLis", () => {
         expect(insertCompIntoParralellNet(addedComparator, compArr))
         .toEqual(expected);
     })
-    
     //this test is confusing the hell out of me and not passing but functionality of functionis returning good result...
 
 
@@ -33,3 +32,15 @@ describe("insertArrIntoParallelLis", () => {
     // })
     
 });
+describe("create paralell string", () => {
+    var network;
+    beforeEach(() => {
+        network = new Network("[(1,2),(3,4),(1,3),(2,4),(2,3)]");
+        network.createParallelNetwork();
+    })
+
+    //[[(1,2),(3,4)],[(1,3),(2,4)],[(2,3)]]
+    test("given a Network with parallel list, should create correct str", () =>{
+        expect(network.parallelNetworkToString()).toEqual("[[(1,2),(3,4)],[(1,3),(2,4)],[(2,3)]]")
+    })
+})

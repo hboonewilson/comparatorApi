@@ -6,30 +6,30 @@ const createParallelLis = (lis) => {
     //var retLis
     //lis.map( comp => comp)
 }
-//take the comparator and insert it into the paralellLis that will allow it
-const insertArrIntoParallelLis = (comp, paralellLis) => { 
-    var lowWire = comp[0];
-    var highWire = comp[1];
+// //take the comparator and insert it into the paralellLis that will allow it
+// const insertArrIntoParallelLis = (comp, arrayOne) => { 
+//     var highWire = comp.highWire;
+//     var lowWire = comp.lowWire;
+//     var hasBeenInserted = false;
+//     //arrayOne has another nested array inside 
+//     //array two is the nested array and contains the comparators that can be run in paralell.
+//     arrayOne.forEach(arrayTwo => {
+//         var canBeInArrayTwo = true;
+//         arrayTwo.forEach(comparator => {
+//             if ( highWire == comparator.highWire || lowWire == comparator.highWire ||
+//                 highWire == comparator.lowWire || lowWire == comparator.lowWire ) {
+//                     canBeInArrayTwo = false;
+//                 }
+//         });
+//         if(canBeInArrayTwo && !hasBeenInserted) { 
+//             arrayTwo.push(comp) 
+//             hasBeenInserted = true;
+//         }
 
-
-    //is there a smarter way to search through [[[]]]? Create a comparator class
-
-    var noValidParalells = true;
-    paralellLis.forEach(element => {
-        var isValid = true;
-        element.forEach(comparator => {
-            if(comparator[0] == lowWire || comparator[1] == lowWire ||
-               comparator[0] == highWire || comparator[1] == highWire ){
-                   isValid = false;
-               }
-        });
-        if(isValid){ 
-            noValidParalells = false;
-            element.push(comp)
-         }
-        
-    });
-    if(noValidParalells){paralellLis.push([comp])}
-    return paralellLis;
-};
-module.exports = {insertArrIntoParallelLis}
+//     });
+//     if(!hasBeenInserted) {
+//         arrayOne.push([comp])
+//     }
+//     return arrayOne;
+// };
+module.exports = {}

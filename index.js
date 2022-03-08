@@ -24,13 +24,12 @@ app.get('/sort', (req, res) => {
   }
 })
 app.get('/parallel', (req, res) => {
-  let arr = comparatorNetworks.tupleToArray(req.query.arr);
-
+  var responseStr = comparatorNetworks.createParallelNetwork(req.query.arr);
+  res.send(responseStr);
 })
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`)
 })
-paralell.insertArrIntoParallelLis([1,2], [[[1,2],[2,3]],[3,4]])
 
 
 //https://comparator-api.herokuapp.com/

@@ -7,7 +7,11 @@ const  toNewString = function(str){
     });
     return retArr;
 }
-
+const createParallelNetwork  = (str) => {
+    var network = new Network(str);
+    network.createParallelNetwork();
+    return network.parallelNetworkToString();
+}
 const compareTheNetwork = function(lis){
     //the place holder for now.
     var comparatorNetwork = new Network("[(1,2),(3,4),(1,3),(2,4),(2,3)]")
@@ -44,7 +48,6 @@ const tupleToArray = function(tuple){
         .replace(/\(/g, '[')
         .replace(/\)/g, ']'));
     };
-
-
+var network = new Network("[(1,2),(3,4),(1,3),(2,4),(2,3)]");
 //console.log(stringToArray("[1,2,3,4,5]"))
-module.exports = {toNewString, compareTheNetwork, stringToArray, tupleToArray}
+module.exports = {toNewString, compareTheNetwork, stringToArray, tupleToArray, createParallelNetwork}
