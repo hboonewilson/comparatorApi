@@ -1,7 +1,6 @@
 const { response } = require('express')
 const express = require('express')
 const comparatorNetworks = require('./comparatorNetworks')
-const paralell = require('./comparatorNetworks/parallel')
 const app = express();
 const PORT = process.env.PORT || 3000
 
@@ -24,8 +23,13 @@ app.get('/sort', (req, res) => {
   }
 })
 app.get('/parallel', (req, res) => {
+  try {
   var responseStr = comparatorNetworks.createParallelNetwork(req.query.arr);
   res.send(responseStr);
+  }
+  catch(error) {
+    res.send("send with valid argument: ?arr=[(a,b),(c,d),(e,f)]")
+  }
 })
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`)

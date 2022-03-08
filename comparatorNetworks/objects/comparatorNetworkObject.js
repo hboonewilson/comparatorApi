@@ -9,6 +9,13 @@ class Comparator {
 class Network {
     constructor(compLis){
         var arr = tupleToArray(compLis);
+        
+        var firstArray = Array.isArray(arr);
+        var nestedArray = Array.isArray(arr[0]);
+        if(!firstArray || !nestedArray) {
+            throw "Not correct string format";
+        }
+
         this.theTopWire = findHighestWire(arr); 
     
         this.compArr = []
