@@ -1,36 +1,62 @@
 const { response } = require('express')
-const express = require('express')
-const comparatorNetworks = require('./comparatorNetworks')
+const express = require('express');
+const path = require('path');
 const app = express();
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT || 4000
 
-
+app.use(express.static(path.join(__dirname, 'build')));
 app.get('/', (req, res) => {
-  res.send('Hello World!')
+  res.sendFile(path.join(__dirname, "build", "index.html"))
 })
-app.get('/sort', (req, res) => {
-  try {
-    let arr = JSON.parse(req.query.arr)
-    let newLis = comparatorNetworks.compareTheNetwork(arr)
-
-    if(!newLis){ 
-      res.send("List is too small for sorting with comparator")
+const mockReturn = {
+  "comparatorData" : [
+    {
+      "name" : "sort",
+      "endPoint" : "/sort",
+      "input" : "Unsorted Array ([4,5,8,1,10,15])",
+      "output" : "Sorted input Array ([1,4,5,8,10,15])",
+      "description" : "ABCDEFGHIJKLMNOPQRSTUV",
+      "isActive" : true
+    },
+    {
+      "name" : "parallel",
+      "endPoint" : "/parallel",
+      "input" : "Comparator Network not in paralell",
+      "output" : "Comparator Network in parallel",
+      "description" : "YOYoYO",
+      "isActive" : false
+    },
+    {
+      "name" : "create",
+      "endPoint" : "/create",
+      "input" : "Number n",
+      "output" : "Parallel Comparator Network to sort Array of n elements",
+      "description" : "YOYoYO",
+      "isActive" : false
+    },
+    {
+      "name" : "test",
+      "endPoint" : "/test",
+      "input" : "Network",
+      "output" : "True/False on if comparator network input Network is a comparator network",
+      "description" : "YOYoYO",
+      "isActive" : false
     }
-    else { res.send(newLis) }
+  ]
+}
+let numberCalls = 0;
+app.get('/number', (req, res) => {
+  try{
+    console.log(numberCalls);
+    numberCalls += 1;
+    res.json(mockReturn);
+  }
+  catch (error){
+    console.log(error);
+  }
+})
 
-  } catch (error) {
-    res.send("send with valid argument: arr=[a,b,c]")
-  }
-})
-app.get('/parallel', (req, res) => {
-  try {
-  var responseStr = comparatorNetworks.createParallelNetwork(req.query.arr);
-  res.send(responseStr);
-  }
-  catch(error) {
-    res.send("send with valid argument: ?arr=[(a,b),(c,d),(e,f)]")
-  }
-})
+
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`)
 })
