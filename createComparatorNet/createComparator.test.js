@@ -1,5 +1,5 @@
 const Comparator = require('../comparatorObjects/comparator');
-const {createComparator, createComparatorNet, walkDownFunc} = require('./createComparator')
+const {createComparator, createComparatorNet, walkDownFunc, createReturnString} = require('./createComparator')
 describe("Testing createComparator functions", () => {
     const comp12 = new Comparator(1,2);
     const comp23 = new Comparator(2,3);
@@ -22,8 +22,12 @@ describe("Testing createComparator functions", () => {
             comp34, comp23, comp12, comp56, comp45, comp34, comp23, comp12];
             //, new Comparator(1,2)];
         const actual = createComparatorNet(6);
-        console.log("actual", actual);
-        console.log("expected", expected);
+        expect(actual).toEqual(expected);
+    })
+    test("given createReturnString(arrayOfObjects) should return array of objects in form of Object{hi:x,lo:y} = (x,y)", 
+    () => {
+        const expected = "[(1,2),(2,3),(1,2),(3,4),(2,3),(1,2),(4,5),(3,4),(2,3),(1,2),(5,6),(4,5),(3,4),(2,3),(1,2)]";
+        const actual = createReturnString(6)
         expect(actual).toEqual(expected);
     })
     

@@ -1,9 +1,10 @@
 const { response } = require('express')
 const express = require('express');
+const res = require('express/lib/response');
 const path = require('path');
 const app = express();
 const PORT = process.env.PORT || 4000
-
+const {createReturnString} = require('./createComparatorNet/createComparator')
 app.use(express.static(path.join(__dirname, 'build')));
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, "build", "index.html"))
@@ -56,6 +57,16 @@ app.get('/number', (req, res) => {
   }
 })
 
+app.get('/create', (req, response) => {
+  try {
+    if(!req.query.number){throw "No number argument!"}
+    const responseArr = createReturnString(req.query.number);
+    response.send(responseArr);
+  }
+  catch(e) {
+    response.send(e);
+  }
+})
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`)
