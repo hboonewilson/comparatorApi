@@ -6,6 +6,7 @@ const app = express();
 const PORT = process.env.PORT || 4000
 const {createReturnString} = require('./createComparatorNet/createComparator')
 const {testArrays} = require('./test/testing')
+const {createArrFromStr, sortArr} = require('./sort/sort')
 app.use(express.static(path.join(__dirname, 'build')));
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, "build", "index.html"))
@@ -57,11 +58,21 @@ app.get('/number', (req, res) => {
     console.log(error);
   }
 })
-
+app.get('/sort', (req, res) => {
+  try{
+    if(!req.query.arg){throw "No array argument!"}
+    const arr = createArrFromStr(req.query.arg)
+    const sortedArr = sortArr(arr)
+    res.send(sortedArr)
+  }
+  catch(e){
+    response.send(e);
+  }
+})
 app.get('/create', (req, response) => {
   try {
-    if(!req.query.number){throw "No number argument!"}
-    const responseArr = createReturnString(parseInt(req.query.number));
+    if(!req.query.arg){throw "No number argument!"}
+    const responseArr = createReturnString(parseInt(req.query.arg));
     response.send(responseArr);
   }
   catch(e) {
@@ -70,8 +81,8 @@ app.get('/create', (req, response) => {
 })
 app.get('/test', (req, res) => {
   try {
-    if(!req.query.number){throw "No compNet argument"}
-    const yesOrNo = testArrays(req.query.number);
+    if(!req.query.arg){throw "No compNet argument"}
+    const yesOrNo = testArrays(req.query.arg);
     res.send(yesOrNo);
   }
   catch(e) {
@@ -84,3 +95,4 @@ app.listen(PORT, () => {
 
 
 //https://comparator-api.herokuapp.com/
+//TypeError: Cannot read property 'get' of undefined???

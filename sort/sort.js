@@ -1,5 +1,7 @@
 const {createComparatorNet} = require('../createComparatorNet/createComparator')
-
+const createArrFromStr = (arrStr) => {
+    return JSON.parse(arrStr);
+}
 const sortArr = (arr) => {
     const comparatorNet = createComparatorNet(arr.length);
     comparatorNet.forEach(comp => {
@@ -26,4 +28,4 @@ const tryAndSort = (arr, compArr) => {
     });
     return arr;
 }
-module.exports = {sortArr, tryAndSort}
+module.exports = {sortArr, tryAndSort, createArrFromStr}
